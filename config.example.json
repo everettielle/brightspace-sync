@@ -1,0 +1,7 @@
+{
+  "baseUrl": "https://lms.example.edu",
+  "sessionFile": "~/.config/brightspace-sync/session.json",
+  "credentialsFile": "~/.config/brightspace-sync/credentials.json",
+  "eventOutput": "data/events.json",
+  "contentOutput": "data/content"
+}

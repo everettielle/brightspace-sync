@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm pack --dry-run --json
+      - name: Secret-pattern check
+        run: |
+          if git grep -nE 'd2lSecureSessionVal=[^[:space:]]|d2lSessionVal=[^[:space:]]' -- ':!src/__tests__' ':!.github/workflows/ci.yml'; then
+            echo 'Potential Brightspace session value found'
+            exit 1
+          fi

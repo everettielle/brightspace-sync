@@ -1,0 +1,67 @@
+{
+  "name": "brightspace-sync",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "description": "Read-only Brightspace API library and CLI for course events and content files.",
+  "license": "UNLICENSED",
+  "bin": {
+    "brightspace-sync": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./stonybrook": {
+      "types": "./dist/password-login.d.ts",
+      "import": "./dist/password-login.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "config.example.json",
+    "docs",
+    "examples"
+  ],
+  "keywords": [
+    "brightspace",
+    "d2l",
+    "valence",
+    "lms",
+    "education"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "node -e \"if(process.platform!=='win32')require('node:fs').chmodSync('dist/cli.js',0o755)\"",
+    "build:test": "tsc -p tsconfig.json",
+    "test": "npm run build:test && node --test dist/__tests__/*.test.js",
+    "check": "npm run build && npm test",
+    "prepack": "npm run clean && npm run build",
+    "stonybrook-login": "npm run build --silent && node dist/cli.js stonybrook-login",
+    "credential-login": "npm run stonybrook-login --",
+    "login": "npm run build --silent && node dist/cli.js login",
+    "session-status": "npm run build --silent && node dist/cli.js session-status",
+    "logout": "npm run build --silent && node dist/cli.js logout",
+    "sync": "npm run build --silent && node dist/cli.js sync",
+    "download-content": "npm run build --silent && node dist/cli.js download-content",
+    "auth-check": "npm run build --silent && node dist/cli.js auth-check"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.62.1"
+  }
+}
