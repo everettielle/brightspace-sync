@@ -5,7 +5,7 @@
   "type": "module",
   "sideEffects": false,
   "description": "Read-only Brightspace API library and CLI for course events and content files.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bin": {
     "brightspace-sync": "dist/cli.js"
   },
@@ -23,6 +23,7 @@
   },
   "files": [
     "dist",
+    "LICENSE",
     "README.md",
     "SECURITY.md",
     "CONTRIBUTING.md",

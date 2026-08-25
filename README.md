@@ -46,7 +46,7 @@ npm link
 
 `npm link` exposes the local CLI as `brightspace-sync`. It is optional; commands may also be run through `node dist/cli.js` or the provided npm scripts.
 
-The package remains `private` and `UNLICENSED` until a public package name and license are deliberately selected.
+The source code is available under the MIT License. The npm package remains marked `private` to prevent accidental publication until a package-release policy is selected.
 
 ## Configuration
 
@@ -246,3 +246,7 @@ Also inspect the complete Git diff for live course identifiers, personal paths, 
 
 OAuth registrations should request only the scopes needed by the chosen operations, including
 own-enrollment read, personal-calendar read, content table-of-contents read, and content-file read.
+
+## License
+
+MIT License. See `LICENSE`.
